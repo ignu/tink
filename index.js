@@ -1,18 +1,22 @@
 const {h, mount, Component, Text} = require('ink');
 
-//const redux = require('redux')
-//const {connect} = require('react-redux')
-//
-//const Twitter = require('twitter');
-//const client = new Twitter({})
+class Tink extends Component {
+  constructor(props) {
+    super(props)
 
-const Tink = (props) => {
-  return (
-    <Text green>
-      cool
-      <br/>
-    </Text>
-  );
+    this.state = {
+      tweets: []
+    }
+  }
+
+  render() {
+    return (
+      <Text green>
+        {this.state.tweets.length}
+        <br/>
+      </Text>
+    );
+  }
 }
 
 const unmount = mount(<Tink/>, process.stdout);
