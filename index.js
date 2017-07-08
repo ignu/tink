@@ -1,33 +1,23 @@
 const {h, mount, Component, Text} = require('ink');
 
-class Counter extends Component {
-  constructor() {
-    super();
+//const redux = require('redux')
+//const {connect} = require('react-redux')
+//
+//const Twitter = require('twitter');
+//const client = new Twitter({})
 
-    this.state = {
-      i: 0
-    };
-  }
-
-  render() {
-    return (
-      <Text green>
-        {this.state.i} tests passed
-      </Text>
-    );
-  }
-
-  componentDidMount() {
-    this.timer = setInterval(() => {
-      this.setState({
-        i: this.state.i + 1
-      });
-    }, 100);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+const Tink = (props) => {
+  return (
+    <Text green>
+      cool
+      <br/>
+    </Text>
+  );
 }
 
-mount(<Counter/>, process.stdout);
+const unmount = mount(<Tink/>, process.stdout);
+
+setTimeout(() => {
+  console.log("😎 goodbye.");
+  unmount();
+}, 10000);
