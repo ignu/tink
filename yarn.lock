@@ -1102,9 +1102,9 @@ inherits@2, inherits@^2.0.3, inherits@~2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
-ink@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ink/-/ink-0.1.1.tgz#87ec0a7230d3815190f398569e453eb0dad827ff"
+ink@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ink/-/ink-0.1.2.tgz#fb74b660aea1291e7effe8cef47908f7da98b8a4"
   dependencies:
     arrify "^1.0.1"
     chalk "^2.0.1"

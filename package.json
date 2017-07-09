@@ -21,7 +21,7 @@
   "homepage": "https://github.com/ignu/tink#readme",
   "dependencies": {
     "dotenv": "^4.0.0",
-    "ink": "^0.1.1",
+    "ink": "^0.1.2",
     "react": "^15.6.1",
     "twitter": "^1.7.1"
   },
