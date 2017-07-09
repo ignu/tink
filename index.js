@@ -10,11 +10,29 @@ const client = new Twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
 })
 
+const formatDate = (date) => {
+  const d = new Date(date)
+  return `${d.getMonth()+1}/${d.getDay()} ${d.getHours()}:${d.getMinutes()}`
+}
+
+const QuotedTweet = (props) => {
+  return(<div>
+    <br/>
+    <Text gray>  ＞ </Text>
+    <Text dim blue>@{props.user.screen_name}</Text><br/>
+    <Text gray>  ＞ </Text>
+    <Text dim gray>{props.text}</Text><br/><br/>
+  </div>)
+}
+
 const Tweet = (props) => {
   return(
     <div>
-      <Text green>@{props.user.screen_name}</Text><br/>
-      <Text>{props.text}</Text><br/><br/>
+      <Text blue bold>@{props.user.screen_name}</Text><br/>
+      <Text>{props.text}</Text><br/>
+      { props.quoted_status && <QuotedTweet {...props.quoted_status}/> }
+      <Text gray>↷  {props.retweet_count} | ❤ {props.favorite_count} | {formatDate(props.created_at)}</Text><br/>
+      <br/>
     </div>
   )
 }
