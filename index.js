@@ -46,7 +46,7 @@ class Tink extends Component {
       error: null
     }
 
-    client.get('statuses/user_timeline', (err, t) => {
+    client.get('lists/statuses', { owner_screen_name: "ignu", include_rts: "true", slug: "politics" }, (err, t) => {
       if(err) {
         const message = err[0] ? err[0].message : err
         console.log("😎 err", err);
