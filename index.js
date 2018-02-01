@@ -2,6 +2,7 @@ require('dotenv').config()
 const {h, mount, Component, Text} = require('ink');
 
 const Twitter = require("twitter")
+const R = require("ramda")
 
 const client = new Twitter({
   consumer_key: process.env.CONSUMER_KEY,
@@ -17,21 +18,21 @@ const formatDate = (date) => {
 
 const QuotedTweet = (props) => {
   return(<div>
-    <br/>
     <Text gray>  ＞ </Text>
     <Text dim blue>@{props.user.screen_name}</Text><br/>
     <Text gray>  ＞ </Text>
-    <Text dim gray>{props.text}</Text><br/><br/>
+    <Text dim gray>{props.full_text}</Text><br/>
   </div>)
 }
 
 const Tweet = (props) => {
   return(
     <div>
-      <Text blue bold>@{props.user.screen_name}</Text><br/>
-      <Text>{props.text}</Text><br/>
-      { props.quoted_status && <QuotedTweet {...props.quoted_status}/> }
+      <Text blue bold>@{props.user.screen_name}</Text>
       <Text gray>↷  {props.retweet_count} | ❤ {props.favorite_count} | {formatDate(props.created_at)}</Text><br/>
+      <Text blue>{props.full_text}</Text><br/>
+      { props.quoted_status && <QuotedTweet {...props.quoted_status}/> }
+      <Text>{props.in_reply_to_status_id}</Text>
       <br/>
     </div>
   )
@@ -46,7 +47,7 @@ class Tink extends Component {
       error: null
     }
 
-    client.get('lists/statuses', { owner_screen_name: "ignu", include_rts: "true", slug: "politics" }, (err, t) => {
+    client.get('lists/statuses', { tweet_mode: 'extended', owner_screen_name: "ignu", include_rts: "true", slug: "politics" }, (err, t) => {
       if(err) {
         const message = err[0] ? err[0].message : err
         console.log("😎 err", err);
