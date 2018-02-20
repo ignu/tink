@@ -30,7 +30,7 @@ const Tweet = (props) => {
     <div>
       <Text blue bold>@{props.user.screen_name}</Text>
       <Text gray>↷  {props.retweet_count} | ❤ {props.favorite_count} | {formatDate(props.created_at)}</Text><br/>
-      <Text blue>{props.full_text}</Text><br/>
+      <Text>{props.full_text}</Text><br/>
       { props.quoted_status && <QuotedTweet {...props.quoted_status}/> }
       <Text>{props.in_reply_to_status_id}</Text>
       <br/>
@@ -47,7 +47,9 @@ class Tink extends Component {
       error: null
     }
 
-    client.get('lists/statuses', { tweet_mode: 'extended', owner_screen_name: "ignu", include_rts: "true", slug: "politics" }, (err, t) => {
+    const list = process.env.TWITTER_LIST || 'politics'
+
+    client.get('lists/statuses', { tweet_mode: 'extended', owner_screen_name: "ignu", include_rts: "true", slug: list }, (err, t) => {
       if(err) {
         const message = err[0] ? err[0].message : err
         console.log("😎 err", err);
@@ -57,7 +59,7 @@ class Tink extends Component {
         })
       } else {
         this.setState({
-          tweets: t,
+          tweets: R.reverse(t),
           error: null
         })
       }
@@ -78,6 +80,5 @@ class Tink extends Component {
 const unmount = mount(<Tink/>, process.stdout);
 
 setTimeout(() => {
-  console.log("😎 goodbye.");
   unmount();
-}, 4000);
+}, 1200);
