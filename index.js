@@ -32,8 +32,8 @@ const Tweet = (props) => {
       <Text gray>↷  {props.retweet_count} | ❤ {props.favorite_count} | {formatDate(props.created_at)}</Text><br/>
       <Text>{props.full_text}</Text><br/>
       { props.quoted_status && <QuotedTweet {...props.quoted_status}/> }
-      <Text>{props.in_reply_to_status_id}</Text>
       <br/>
+      <Text gray>http://twitter.com/{props.user.screen_name}/status/{props.id_str}</Text><br/>
     </div>
   )
 }
