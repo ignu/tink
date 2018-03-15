@@ -13,7 +13,10 @@ const client = new Twitter({
 
 const formatDate = (date) => {
   const d = new Date(date)
-  return `${d.getMonth()+1}/${d.getDay()} ${d.getHours()}:${d.getMinutes()}`
+
+  let minutes = `${d.getMinutes()}`
+  if (minutes.length == 1) { minutes = `0${minutes}` }
+  return `${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${minutes}`
 }
 
 const QuotedTweet = (props) => {
