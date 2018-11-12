@@ -3,6 +3,7 @@ const {h, mount, Component, Text} = require('ink');
 
 const Twitter = require("twitter")
 const R = require("ramda")
+const unescape = require("unescape")
 
 const client = new Twitter({
   consumer_key: process.env.CONSUMER_KEY,
@@ -10,6 +11,7 @@ const client = new Twitter({
   access_token_key: process.env.ACCESS_TOKEN_KEY,
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
 })
+
 
 const formatDate = (date) => {
   const d = new Date(date)
@@ -24,7 +26,7 @@ const QuotedTweet = (props) => {
     <Text gray>  ＞ </Text>
     <Text dim blue>@{props.user.screen_name}</Text><br/>
     <Text gray>  ＞ </Text>
-    <Text dim gray>{props.full_text}</Text><br/>
+    <Text dim gray>{unescape(props.full_text)}</Text><br/>
   </div>)
 }
 
@@ -33,7 +35,7 @@ const Tweet = (props) => {
     <div>
       <Text blue bold>@{props.user.screen_name}</Text>
       <Text gray>↷  {props.retweet_count} | ❤ {props.favorite_count} | {formatDate(props.created_at)}</Text><br/>
-      <Text>{props.full_text}</Text><br/>
+      <Text>{unescape(props.full_text)}</Text><br/>
       { props.quoted_status && <QuotedTweet {...props.quoted_status}/> }
       <br/>
       <Text gray>http://twitter.com/{props.user.screen_name}/status/{props.id_str}</Text><br/>

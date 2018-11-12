@@ -24,7 +24,8 @@
     "ink": "^0.1.2",
     "ramda": "^0.25.0",
     "react": "^15.6.1",
-    "twitter": "^1.7.1"
+    "twitter": "^1.7.1",
+    "unescape": "1.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
